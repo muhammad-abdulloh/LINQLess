@@ -20,12 +20,25 @@ namespace LINQLess
             //    }
             //}
 
-            foreach(var item in data.GetCenterByNameWithExperience())
+            //foreach(var item in data.GetCenterByNameWithExperience())
+            //{
+            //    Console.WriteLine(item.FirstName + " " + item.Experience);
+            //}
+
+
+            List<int> numbers = new List<int>()
             {
-                Console.WriteLine(item.FirstName + " " + item.Experience);
-            }
+                1, 2, 3, 4, 5, 657,45 ,567,5,75,7,5,8,68,6, 0,78,6,6,9,9 ,3412 ,978 ,9,789,2342,637,213
+            };
 
+            List<int> numbers2 = new List<int>()
+            {
+                2, 1, 3, 4, 5, 657,45 ,567,5,75,7,5,8,68,6, 0,78,6,6,9,9 ,3412 ,978 ,9,789,2342,637,213
+            };
 
+            var result = numbers.SequenceEqual(numbers2);
+
+            Console.WriteLine(result);
         }
     }
 }
