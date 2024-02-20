@@ -1,6 +1,7 @@
 ﻿using static System.Formats.Asn1.AsnWriter;
 using System.Linq;
 using LINQLess.LinqMethods;
+using System.Text.Json;
 
 namespace LINQLess
 {
@@ -8,36 +9,39 @@ namespace LINQLess
     {
         static void Main(string[] args)
         {
-            List<int> numbers = new List<int>()
+
+            
+            // Join
+            var employees = new List<Employee>
+                {
+                    new Employee { Id = 1, EName = "John", DepartmentId = 1 },
+                    new Employee { Id = 2, EName = "Alice", DepartmentId = 1 },
+                    new Employee { Id = 3, EName = "Bob", DepartmentId = 2 },
+                    new Employee { Id = 4, EName = "Jack", DepartmentId = 1 },
+                    new Employee { Id = 5, EName = "Toms", DepartmentId = 2 },
+                    new Employee { Id = 6, EName = "Ron", DepartmentId = 1 },
+                    new Employee { Id = 7, EName = "Ram", DepartmentId = 2 },
+                    new Employee { Id = 8, EName = "Devid", DepartmentId = 2 },
+                };
+
+            var departments = new List<Department>
+                {
+                    new Department { Id = 1, DName = "HR" },
+                    new Department { Id = 2, DName = "Programming" }
+                };
+
+            var joinedData = departments
+                .GroupJoin(employees, dept => dept.Id , emp => emp.DepartmentId, 
+                                   (dept, emps) => new { DepartmentName = dept.DName, Employees = emps });
+            
+            Console.WriteLine("Join:");
+            
+            foreach (var item in joinedData)
             {
-                1, 2, 3, 4, 0, 6
-            };
+                Console.WriteLine($"{item.DepartmentName} - {JsonSerializer.Serialize(item.Employees)}");
+            }
 
-            List<string> numbers2 = new List<string>()
-            {
-                "item1", "item2", "item3"
-            };
-
-
-            List<int> numbers22 = new List<int>()
-            {
-                4, 12, 13, 14, 15, 0, 5, 1 ,16, 17, 18, 19, 20, 21, 22
-            };
-
-            LINQForEduCenter data = new LINQForEduCenter();
-
-            var centers = data.GetAll();
-
-            // arrayni o'zini o'zgartirvoryabdi
-            var number = numbers2[907385826];
-
-            Console.WriteLine(number);
-
-
-            //foreach (var number in result)
-            //{
-            //    Console.Write(number + " ");
-            //}
+        
 
         }
     }
@@ -45,12 +49,20 @@ namespace LINQLess
     class Employee
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int DepartmentId { get; set; }
+        public string EName { get; set; }
     }
 
     class Department
     {
         public int Id { get; set; }
         public string DName { get; set; }
+    }
+
+    class EmployeeDepartment
+    {
+        public string EmployeeName { get; set; }
+        public int DepartmentId { get; set;}
+        public string DepartmentName { get; set;}
     }
 }
