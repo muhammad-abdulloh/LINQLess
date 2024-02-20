@@ -2,6 +2,7 @@
 using System.Linq;
 using LINQLess.LinqMethods;
 using Newtonsoft.Json;
+using System.Runtime.CompilerServices;
 
 namespace LINQLess
 {
@@ -30,16 +31,37 @@ namespace LINQLess
                     new Department { Id = 2, DName = "Programming" }
                 };
 
-            var joinedData = departments
-                .GroupJoin(employees, dept => dept.Id , emp => emp.DepartmentId, 
-                                   (dept, emps) => new { DepartmentName = dept.DName, Employees = emps });
-            
+
+
+
+
+
+            List<int> numbers = new List<int>() { 1, 2, 3, 4, 5 };
+
+            // factorial
+            var factorial = employees.GroupBy(x => x.DepartmentId == 1 ? "HR" : "Programming");
+
+           foreach(var factor in factorial)
+            {
+                Console.WriteLine($"Key: {factor.Key}, EmployeeName: {string.Join(", ", factor.Select(x => x.EName))}");
+            }
+
+
+            var result = employees.ToLookup(x => x.DepartmentId == 1 ? "HR" : "Programming");
+
+
+
+
+
+
+
+
+
+
+
             Console.WriteLine("Join:");
             
-            foreach (var item in joinedData)
-            {
-                Console.WriteLine($"{item.DepartmentName} - {JsonConvert.SerializeObject(item.Employees, Formatting.Indented)}");
-            }
+            
 
         
 
