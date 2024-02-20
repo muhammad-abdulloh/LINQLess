@@ -1,7 +1,7 @@
 ﻿using static System.Formats.Asn1.AsnWriter;
 using System.Linq;
 using LINQLess.LinqMethods;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace LINQLess
 {
@@ -38,7 +38,7 @@ namespace LINQLess
             
             foreach (var item in joinedData)
             {
-                Console.WriteLine($"{item.DepartmentName} - {JsonSerializer.Serialize(item.Employees)}");
+                Console.WriteLine($"{item.DepartmentName} - {JsonConvert.SerializeObject(item.Employees, Formatting.Indented)}");
             }
 
         
