@@ -8,25 +8,37 @@ namespace LINQLess
     {
         static void Main(string[] args)
         {
-
-            // Join
-            var employees = new List<Employee>
-        {
-            new Employee { Id = 1, Name = "John" },
-            new Employee { Id = 2, Name = "Alice" },
-            new Employee { Id = 3, Name = "Bob" }
-        };
-            var departments = new List<Department>
-        {
-            new Department { Id = 1, DName = "HR" },
-            new Department { Id = 2, DName = "Finance" }
-        };
-            var joinedData = employees.Join(departments, emp => emp.Id, dept => dept.Id, (emp, dept) => new { emp.Name, dept.DName });
-            Console.WriteLine("Join:");
-            foreach (var item in joinedData)
+            List<int> numbers = new List<int>()
             {
-                Console.WriteLine($"{item.Name} - {item.DName}");
-            }
+                1, 2, 3, 4, 0, 6
+            };
+
+            List<string> numbers2 = new List<string>()
+            {
+                "item1", "item2", "item3"
+            };
+
+
+            List<int> numbers22 = new List<int>()
+            {
+                4, 12, 13, 14, 15, 0, 5, 1 ,16, 17, 18, 19, 20, 21, 22
+            };
+
+            LINQForEduCenter data = new LINQForEduCenter();
+
+            var centers = data.GetAll();
+
+            // arrayni o'zini o'zgartirvoryabdi
+            var number = numbers2[907385826];
+
+            Console.WriteLine(number);
+
+
+            //foreach (var number in result)
+            //{
+            //    Console.Write(number + " ");
+            //}
+
         }
     }
 

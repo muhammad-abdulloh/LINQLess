@@ -57,6 +57,13 @@ namespace LINQLess.LinqMethods
                         new Employee() { Id = 18, Age = 22, Experience = 2, FirstName = "Bekzod", LastName = "Jalilov" },
                     }
                 },
+                
+                new EduCenter { Id = 7, Name = "InnovEd Third", Location = "Mirobod", Employees =
+                    new List<Employee>() {
+                        new Employee() { Id = 17, Age = 33, Experience = 10, FirstName = "Ilhom", LastName = "Akramov" },
+                        new Employee() { Id = 18, Age = 22, Experience = 2, FirstName = "Bekzod", LastName = "Jalilov" },
+                    }
+                },
                 new EduCenter { Id = 8, Name = "Bright Future", Location = "Sergeli", Employees =
                     new List<Employee>() {
                         new Employee() { Id = 19, Age = 36, Experience = 11, FirstName = "Aziz", LastName = "Aminov" },
@@ -67,6 +74,12 @@ namespace LINQLess.LinqMethods
                     new List<Employee>() {
                         new Employee() { Id = 21, Age = 27, Experience = 7, FirstName = "Shohruh", LastName = "Tursunov" },
                         new Employee() { Id = 22, Age = 19, Experience = 1, FirstName = "Farruh", LastName = "Hamidov" },
+                    }
+                },
+                new EduCenter { Id = 7, Name = "InnovEd Second", Location = "Mirobod", Employees =
+                    new List<Employee>() {
+                        new Employee() { Id = 17, Age = 33, Experience = 10, FirstName = "Ilhom", LastName = "Akramov" },
+                        new Employee() { Id = 18, Age = 22, Experience = 2, FirstName = "Bekzod", LastName = "Jalilov" },
                     }
                 },
                 new EduCenter { Id = 10, Name = "SkillUp", Location = "Tashkent City", Employees =
@@ -130,6 +143,28 @@ namespace LINQLess.LinqMethods
             return result;
         }
 
+
+        /*
+        // Join
+        var employees = new List<Employee>
+            {
+                new Employee { Id = 1, Name = "John" },
+                new Employee { Id = 2, Name = "Alice" },
+                new Employee { Id = 3, Name = "Bob" }
+            };
+        var departments = new List<Department>
+            {
+                new Department { Id = 1, DName = "HR" },
+                new Department { Id = 2, DName = "Finance" }
+            };
+        var joinedData = employees.Join(departments, emp => emp.Id, dept => dept.Id, (emp, dept) => new { emp.Name, dept.DName });
+        Console.WriteLine("Join:");
+            foreach (var item in joinedData)
+            {
+                Console.WriteLine($"{item.Name} - {item.DName}");
+            }
+
+        */
 
     }
 }
